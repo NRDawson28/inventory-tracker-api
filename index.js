@@ -7,9 +7,14 @@ const connectToMongoDB = require('./database/connectToMongoDB')
 app.use(express.json())
 app.use(logger('dev'))
 
+const supplierRouter = require("./routes/supplierRouter");
+const itemRouter = require("./routes/itemRouter");
+app.use("/api/v1/suppliers", supplierRouter);
+app.use("/api/v1/items", itemRouter);
+
 const PORT = 3000
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)
   connectToMongoDB()
-})
+});
